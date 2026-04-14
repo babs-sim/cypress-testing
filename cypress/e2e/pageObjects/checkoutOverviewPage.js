@@ -3,8 +3,8 @@ class CheckoutOverviewPage {
         itemTotal: () => cy.get('div[data-test="subtotal-label"]'),
         taxvalue: () => cy.get('div[data-test="tax-label"]').invoke('text').then((text) => parseFloat(text.replace('Tax: $', ''))),
         itemTotalValue: () => cy.get('div[data-test="subtotal-label"]').invoke('text').then((text) => parseFloat(text.replace('Item total: $', ''))),
-        itemPrices: () => cy.get('.inventory_item_price').invoke('text').then((text) => text.replace('$', '')) //invoke('text') = getText().   text.replace used to replace $ with empty space
-
+        itemPrices: () => cy.get('.inventory_item_price').invoke('text').then((text) => text.replace('$', '')), //invoke('text') = getText().   text.replace used to replace $ with empty space
+        priceTotal: () => cy.get('div[data-test="total-label"]').invoke('text').then((text) => parseFloat(text.replace('Total: $', '')))
     }
 
 
@@ -27,8 +27,14 @@ class CheckoutOverviewPage {
 
     //verifies if individual item prices are correct. Array contains a list of prices
     verifyItemPrice(amount) {
-        this.elements.itemPrices(amount)
+        this.elements.itemPrices()
             .should('contain', amount)
+    }
+
+    verifyPriceTotal(Total) {
+        this.elements.priceTotal()
+            .should('be.a', 'number')
+            .should('eq', Total)
     }
 
 
