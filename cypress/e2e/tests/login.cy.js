@@ -12,13 +12,13 @@ describe('Login Test', () => {
     });
 
 
-    it('Logs in succesfully with standard_user, using page object model', () => {
+    it('Logs in succesfully with standard_user', () => {
         LoginPage.loginToApplication('standard_user', 'secret_sauce');
         LoginPage.validateUrl('/inventory.html');
         //cy.screenshot();
     });
 
-    it('Show error for locked-out user, using page object model', () => {
+    it('Show error for locked-out user', () => {
         LoginPage.loginToApplication('locked_out_user', 'secret_sauce');
         LoginPage.verifyErrorMessage('Epic sadface: Sorry, this user has been locked out.');
     });
