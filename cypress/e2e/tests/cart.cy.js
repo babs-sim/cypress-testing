@@ -14,15 +14,8 @@ describe('Cart Test', () => {
         //cy.close()
     });
 
-    it('Verifying adding item to cart', () => {
-        LoginPage.validateUrl('/inventory.html');
-        cy.get('button[id="add-to-cart-sauce-labs-backpack"]').click();
-        cy.get('span[data-test="shopping-cart-badge"]')
-            .should('be.visible')
-            .and('contain', 1)
-    });
 
-    it('Verifying adding item to cart, using page object model', () => {
+    it('Verifying adding item to cart', () => {
         
         LoginPage.validateUrl('/inventory.html');
         inventoryPage.addToCart('Sauce Labs Backpack');
@@ -65,14 +58,14 @@ describe('Cart Test', () => {
     });
 
 
-    it('Verifying cart page opens, using page object model', () => {
+    it('Verifying cart page opens', () => {
         
         cartPage.navigateToCart();
         LoginPage.validateUrl('/cart.html')
     });
 
 
-    it('Verifying you can return to inventory page from cart page, using page object model', () => {
+    it('Verifying you can return to inventory page from cart page', () => {
         
         cartPage.navigateToCart();
         cartPage.navigateToInventory();
